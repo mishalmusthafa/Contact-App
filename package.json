@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.4.0"
+  },
+  "name": "contact-list-app",
+  "version": "1.0.0",
+  "description": "A small react application for saving the contacts",
+  "main": "server.js",
+  "devDependencies": {
+    "nodemon": "^3.1.2"
+  },
+  "scripts": {
+    "start": "node ./backend/server",
+    "dev": "nodemon ./backend/server"
+  },
+  "author": "Mishal",
+  "license": "ISC"
+}
