@@ -1,12 +1,14 @@
 const asyncHandler = require('express-async-handler');
 
 const Contact = require('../models/contactModel');
+const User = require('../models/userModel');
 
 // @desc Get contacts
 // @route GET '/api/contacts'
 // @access private
 const getContacts = asyncHandler(async (req, res) => {
-  const contacts = await Contact.find();
+
+  const contacts = await Contact.find({ user: req.user.id });
 
   res.status(200).json(contacts);
 });
@@ -28,6 +30,7 @@ const postContacts = asyncHandler(async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     phone: req.body.phone,
+    user: req.user.id,
   });
 
   res.status(200).json(contact);
@@ -41,6 +44,19 @@ const updateContacts = asyncHandler(async (req, res) => {
   if (!contact) {
     res.status(400);
     throw new Error('Contact not found');
+  }
+
+  // Check for the user
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
+
+  // Make sure only contact that belong to user can update and delete
+  if (contact.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not Authorized');
   }
 
   const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -58,8 +74,20 @@ const deleteContacts = asyncHandler(async (req, res) => {
     throw new Error('Contact not found');
   }
 
-  await contact.deleteOne();
+  // Check for the user
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(401);
+    throw new Error('User not found');
+  }
 
+  // Make sure only contact that belong to user can update and delete
+  if (contact.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error('User not Authorized');
+  }
+
+  await contact.deleteOne();
   res.status(200).json({
     id: req.params.id
   }
