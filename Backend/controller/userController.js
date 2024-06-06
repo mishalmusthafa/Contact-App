@@ -82,18 +82,12 @@ const userLogin = asyncHandler(async (req, res) => {
   }
 });
 
-// @Desc User Login
-// @Route POST api/users/login
+// @Desc Get User
+// @Route POST api/users/me
 // @Access Private
 const getMe = asyncHandler(async (req, res) => {
-  const { _id, name, email } = await User.findById(req.user.id);
 
-  const user = {
-    id: _id,
-    name,
-    email
-  };
-  res.status(200).json(user);
+  res.status(200).json(req.user);
 });
 
 // Json Web Token

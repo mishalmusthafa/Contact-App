@@ -47,14 +47,14 @@ const updateContacts = asyncHandler(async (req, res) => {
   }
 
   // Check for the user
-  const user = await User.findById(req.user.id);
-  if (!user) {
+
+  if (!req.user.id) {
     res.status(401);
     throw new Error('User not found');
   }
 
   // Make sure only contact that belong to user can update and delete
-  if (contact.user.toString() !== user.id) {
+  if (contact.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error('User not Authorized');
   }
@@ -75,14 +75,14 @@ const deleteContacts = asyncHandler(async (req, res) => {
   }
 
   // Check for the user
-  const user = await User.findById(req.user.id);
-  if (!user) {
+
+  if (!req.user.id) {
     res.status(401);
     throw new Error('User not found');
   }
 
   // Make sure only contact that belong to user can update and delete
-  if (contact.user.toString() !== user.id) {
+  if (contact.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error('User not Authorized');
   }

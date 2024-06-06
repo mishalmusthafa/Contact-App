@@ -1,5 +1,5 @@
 # Contact MERN App
-This is a MERN app project for storing the Contacts the people
+A MERN stack Application for storing the contact details of the People. Used Redux and redux toolkit for state management. MongoDB for the database
 
 ## Usage
 Rename the .envexample to .env and add your MONGO_URI
