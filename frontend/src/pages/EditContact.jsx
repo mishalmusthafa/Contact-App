@@ -46,18 +46,17 @@ function EditContact() {
   };
 
   useEffect(() => {
-    if (!user || user === null) {
+    if (!user) {
       navigate('/login');
       return;
     }
-
     dispatch(getContacts());
 
     return () => {
       dispatch(reset());
     };
 
-  }, [navigate, isError, dispatch, message]);
+  }, [user, navigate, isError, dispatch, message]);
 
   useEffect(() => {
     if (contact) {

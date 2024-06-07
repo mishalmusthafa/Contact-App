@@ -23,14 +23,14 @@ function Dashboard() {
   }
 
   useEffect(() => {
-    if (!user || user === null) {
-      navigate('/login');
-      return;
-    }
     if (isError) {
       toast.error(message);
     }
 
+    if (!user) {
+      navigate('/login');
+      return;
+    }
     dispatch(getContacts());
 
     return () => {

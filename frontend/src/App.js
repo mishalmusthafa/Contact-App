@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import Register from './pages/Register';
+import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
 import EditContact from './pages/EditContact';
 
@@ -16,7 +17,9 @@ function App() {
         {/* <div className='px-4'> */}
         <Header />
         <Routes>
-          <Route path='/' element={<Dashboard />} />
+          <Route path='/' element={<PrivateRoute />} >
+            <Route path='/' element={<Dashboard />} />
+          </Route>
           <Route path='/register' element={<Register />} />
           <Route path='/Login' element={<Login />} />
           <Route path='/contacts/:id' element={<EditContact />} />
