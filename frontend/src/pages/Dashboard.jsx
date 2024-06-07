@@ -26,7 +26,10 @@ function Dashboard() {
     if (isError) {
       toast.error(message);
     }
-    dispatch(getContacts());
+
+    if (user) {
+      dispatch(getContacts());
+    }
 
     return () => {
       dispatch(reset());
@@ -45,8 +48,9 @@ function Dashboard() {
           <div className="py-5 flex flex-col min-h-screen">
             <div>
               {contacts.length > 0 ?
-                (<div>{contacts.map((contact) =>
-                  (<SingleContact contact={contact} key={contact._id} />))}
+                (<div>
+                  {contacts.map((contact) =>(
+                    <SingleContact contact={contact} key={contact._id} />))}
                 </div>) :
                 (<p>No Contacts found</p>)}
             </div>
