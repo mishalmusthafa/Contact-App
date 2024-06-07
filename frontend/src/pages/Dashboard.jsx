@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import ContactForm from '../components/ContactForm';
-
 import { toast } from 'react-toastify';
 import Spinner from '../components/Spinner';
 import SingleContact from '../components/SingleContact';
-import { getContacts, reset } from '../features/contact/contactSlice';
+import { getContacts } from '../features/contact/contactSlice';
+import { reset } from '../features/contact/contactSlice';
 
 
 function Dashboard() {
@@ -18,6 +18,10 @@ function Dashboard() {
 
   const { user } = useSelector((state) => state.auth);
 
+  if (contacts.length === 0 || contacts.length < 1) {
+    dispatch(getContacts());
+  }
+
   useEffect(() => {
     if (!user || user === null) {
       navigate('/login');
@@ -27,15 +31,13 @@ function Dashboard() {
       toast.error(message);
     }
 
-    if (user) {
-      dispatch(getContacts());
-    }
+    dispatch(getContacts());
 
     return () => {
       dispatch(reset());
     };
 
-  }, [user, navigate, isError, dispatch, message]);
+  }, [user, navigate, isError, dispatch, message,]);
 
   if (isLoading) {
     return <Spinner />;
@@ -49,7 +51,7 @@ function Dashboard() {
             <div>
               {contacts.length > 0 ?
                 (<div>
-                  {contacts.map((contact) =>(
+                  {contacts.map((contact) => (
                     <SingleContact contact={contact} key={contact._id} />))}
                 </div>) :
                 (<p>No Contacts found</p>)}

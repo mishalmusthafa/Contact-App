@@ -4,15 +4,23 @@ import { CiEdit } from "react-icons/ci";
 import { Link } from 'react-router-dom';
 import { deleteContact, updateContact } from '../features/contact/contactSlice';
 import { useSelector, useDispatch } from 'react-redux';
+import Spinner from '../components/Spinner';
 
 function SingleContact({ contact }) {
   const dispatch = useDispatch();
+
+  const { isLoading } = useSelector((state) => state.contacts);
 
   const onDelete = () => {
     if (window.confirm('Are You Sure?')) {
       dispatch(deleteContact(contact._id));
     }
   };
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
 
   return (
     <>

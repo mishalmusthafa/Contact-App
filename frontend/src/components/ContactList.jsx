@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContacts, reset } from '../features/contact/contactSlice';
 import Spinner from './Spinner';
@@ -18,7 +18,7 @@ function ContactItem() {
     }
     dispatch(getContacts());
 
-  }, [isSuccess, isError, message, dispatch]);
+  }, [isSuccess, isError, message, isLoading, dispatch]);
 
   if (isLoading) {
     return <Spinner />;

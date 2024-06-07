@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import ContactForm from '../components/ContactForm';
-import { toast } from 'react-toastify';
+// import ContactForm from '../components/ContactForm';
+// import { toast } from 'react-toastify';
 import { updateContact, reset, getContacts } from '../features/contact/contactSlice';
 import Spinner from '../components/Spinner';
-import { current } from '@reduxjs/toolkit';
+// import { current } from '@reduxjs/toolkit';
 
 function EditContact() {
   const dispatch = useDispatch();
