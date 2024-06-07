@@ -23,8 +23,6 @@ function ContactForm() {
     }));
   };
 
-
-
   const onSubmit = (e) => {
     e.preventDefault();
     dispatch(createContact(formData));

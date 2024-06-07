@@ -9,6 +9,7 @@ const initialState = {
   message: ''
 };
 
+
 // Create new Contact
 export const createContact = createAsyncThunk('contact/create', async (contactData, thunkAPI) => {
   try {
@@ -28,6 +29,37 @@ export const getContacts = createAsyncThunk(
     try {
       const token = thunkAPI.getState().auth.user.token;
       return await contactService.getContacts(token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Update Contact
+export const updateContact = createAsyncThunk('contact/update', async (contactData, thunkAPI) => {
+  try {
+    const token = thunkAPI.getState().auth.user.token;
+    return await contactService.updateContact(contactData, token);
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+}
+);
+
+// Delete user Contact
+export const deleteContact = createAsyncThunk(
+  'contacts/delete',
+  async (id, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await contactService.deleteContact(id, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -74,6 +106,31 @@ export const contactSlice = createSlice({
       .addCase(getContacts.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(deleteContact.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.contacts = state.contacts.filter((contact) => contact._id !== action.payload.id);
+      })
+      .addCase(deleteContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updateContact.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateContact.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.contacts = action.payload;
+      })
+      .addCase(updateContact.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.isSuccess = false;
         state.message = action.payload;
       });
   }

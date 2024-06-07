@@ -72,10 +72,10 @@ function Register() {
 
 
   return (
-    <div className='flex flex-col justify-center bg-base-200 min-h-128 min-w-fit mt-auto relative'>
-      <p className='link link-primary  text-right text-lg pt-5 px-8 font-medium no-underline absolute top-5 right-5'>
-        <Link to='/login'>Sign me in</Link>
-      </p>
+    <div className='flex flex-col justify-center bg-base-200 lg:min-h-lvh min-w-svh mt-auto relative'>
+
+      <Link to='/login' className='link link-primary  text-center text-lg p-3 font-medium no-underline  top-5 right-5 lg:absolute'>Sign me in</Link>
+
       <div className="hero  bg-base">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

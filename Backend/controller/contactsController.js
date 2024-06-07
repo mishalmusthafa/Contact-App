@@ -60,6 +60,7 @@ const updateContacts = asyncHandler(async (req, res) => {
   }
 
   const updatedContact = await Contact.findByIdAndUpdate(req.params.id, req.body, { new: true });
+  console.log(req.body,'request body!');
 
   res.status(200).json(updatedContact);
 });
