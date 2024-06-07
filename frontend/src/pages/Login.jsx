@@ -58,6 +58,10 @@ function Login() {
     setPasswordVisible(!passwordVisible);
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
 
     <div className='flex flex-col justify-center bg-base-200 lg:min-h-lvh min-w-fit mt-auto relative '>

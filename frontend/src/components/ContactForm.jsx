@@ -1,9 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createContact, reset } from '../features/contact/contactSlice';
-import Spinner from './Spinner';
-
-
+import { createContact } from '../features/contact/contactSlice';
 
 function ContactForm() {
 

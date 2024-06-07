@@ -27,7 +27,14 @@ module.exports = {
 
         "neutral": "#1d1d1d",
 
-        "base-100": "#fff5ff",
+
+        "base-100": "#fff",
+
+        "base-200": "#F0F2F5",
+
+        "base-300": "#bebebe",
+
+        "base-content": "#161616",
 
         "info": "#0072de",
 
@@ -43,10 +50,3 @@ module.exports = {
 
 };
 
-// "base-100": "#fff",
-
-//         "base-200": "#F0F2F5",
-
-//         "base-300": "#bebebe",
-
-//         "base-content": "#161616",
