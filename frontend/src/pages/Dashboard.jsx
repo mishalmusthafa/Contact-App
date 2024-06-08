@@ -27,10 +27,11 @@ function Dashboard() {
       toast.error(message);
     }
 
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+    // Used Private route instead because of not logging out bug
+    // if (!user) {
+    //   navigate('/login');
+    //   return;
+    // }
     dispatch(getContacts());
 
     return () => {

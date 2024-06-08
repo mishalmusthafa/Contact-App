@@ -12,7 +12,7 @@ function EditContact() {
   const navigate = useNavigate();
   const params = useParams();
 
-  const { contacts, isLoading, isSuccess, isError, message } = useSelector((state) => state.contacts);
+  const { contacts, isLoading, isError, message } = useSelector((state) => state.contacts);
   let contact;
   const index = contacts.findIndex((contact) =>
     contact._id === params.id
@@ -46,10 +46,11 @@ function EditContact() {
   };
 
   useEffect(() => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+    // Used Private route instead because of not logging out bug
+    // if (!user) {
+    //   navigate('/login');
+    //   return;
+    // }
     dispatch(getContacts());
 
     return () => {
