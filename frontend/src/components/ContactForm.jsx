@@ -42,7 +42,7 @@ function ContactForm() {
           </label>
           <label className="input  flex items-center gap-2">
             Email
-            <input type="email" name='email' value={email} onChange={onChange} className="grow" placeholder="anna@gamil.com" required />
+            <input type="email" name='email' value={email} onChange={onChange} className="grow" placeholder="anna@gmail.com" />
           </label>
           <label className="input  flex items-center gap-2">
             Phone

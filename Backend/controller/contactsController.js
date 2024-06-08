@@ -21,7 +21,7 @@ const postContacts = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('Please enter a name');
   }
-  if (!req.body.email) {
+  if (!req.body.phone) {
     res.status(400);
     throw new Error('Please enter email');
   }

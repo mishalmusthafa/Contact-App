@@ -18,6 +18,8 @@ function Dashboard() {
 
   const { user } = useSelector((state) => state.auth);
 
+  // dispatch(getContacts());
+
   useEffect(() => {
     if (isError) {
       toast.error(message);
