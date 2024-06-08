@@ -2,7 +2,7 @@ import { FaRegUserCircle } from "react-icons/fa";
 import { CiCircleRemove } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
 import { Link } from 'react-router-dom';
-import { deleteContact, updateContact } from '../features/contact/contactSlice';
+import { deleteContact } from '../features/contact/contactSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import Spinner from '../components/Spinner';
 

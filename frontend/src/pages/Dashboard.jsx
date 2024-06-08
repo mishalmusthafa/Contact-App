@@ -18,10 +18,6 @@ function Dashboard() {
 
   const { user } = useSelector((state) => state.auth);
 
-  if (contacts.length === 0 || contacts.length < 1) {
-    dispatch(getContacts());
-  }
-
   useEffect(() => {
     if (isError) {
       toast.error(message);

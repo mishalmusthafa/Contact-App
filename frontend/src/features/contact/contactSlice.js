@@ -72,8 +72,6 @@ export const deleteContact = createAsyncThunk(
   }
 );
 
-
-
 export const contactSlice = createSlice({
   name: 'contact',
   initialState,
